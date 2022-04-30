@@ -2,10 +2,13 @@
 #include "ui_mainwindow.h"
 #include<config.h>
 #include<help.h>
+#include<QSound>
+#include<QTimer>
+#include<QPainter>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-{
+{   
     ui->setupUi(this);
     initScense();
     //通过ui界面实现退出按钮
@@ -18,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //音乐界面
     music->bemusic();
     connect(ui->actionmusic,&QAction::triggered,music,&help::show);
+    //启动游戏
+    PlayGame();
 
 }
 
@@ -30,4 +35,35 @@ void MainWindow::initScense(){
     setWindowIcon(QIcon(GAME_WINDOW_ICON));
     //窗口图标设置，未知为何在ui上直接设置不显示（似乎不能二进制）
 
+    //定时器设置
+    m_timer.setInterval(GAME_RATE);
+}
+
+void MainWindow::PlayGame()
+{
+    //开始游戏，调用定时器
+    m_timer.start();
+    connect(&m_timer,&QTimer::timeout,[=](){
+       //更新坐标
+        UpdatePostion();
+
+       //绘制图片
+        update();
+
+    });
+}
+
+void MainWindow::UpdatePostion()
+{
+    //更新地图坐标
+    m_map.mapPosition();
+
+}
+
+void MainWindow::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    //绘制地图
+    painter.drawPixmap(0,m_map.map1_posy,m_map.map1);
+    painter.drawPixmap(0,m_map.map2_posy,m_map.map2);
 }
