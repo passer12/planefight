@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton,&QPushButton::clicked,[=](){
        fight1->show();
        this->hide();
+       fight1->PlayGame();
     });
 
 }

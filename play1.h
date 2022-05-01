@@ -5,6 +5,7 @@
 #include<QTimer>
 #include<map.h>
 #include<hero.h>
+#include<bullet.h>
 namespace Ui {
 class play1;
 }
@@ -37,6 +38,8 @@ public:
     //鼠标跟随事件
     void mouseMoveEvent(QMouseEvent* event);
 
+    //测试子弹
+    //bullet testbullet;
 
 private:
     Ui::play1 *ui;

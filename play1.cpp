@@ -6,14 +6,15 @@
 #include<QTimer>
 #include<QPainter>
 #include<QMouseEvent>
+#include<bullet.h>
 play1::play1(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::play1)
 {
     ui->setupUi(this);
     initScense();
-    //启动游戏
-    PlayGame();
+    //启动游戏,在主界面按按钮时实现了
+
 }
 
 play1::~play1()
@@ -39,6 +40,11 @@ void play1::PlayGame()
        //绘制图片
         update();
 
+       //启动测试子弹
+       // testbullet.m_Free = false;
+
+
+
     });
 }
 
@@ -46,6 +52,16 @@ void play1::UpdatePostion()
 {
     //更新地图坐标
     m_map.mapPosition();
+    //testbullet.updatePosition();
+    //子弹射出
+    hero1.shoot();
+    //子弹移动
+    for(int i = 0; i<BULLETS_NUM; i++ ){
+    //一个个判断是否为闲置
+        hero1.r_m_bullets[i].updatePosition();
+        hero1.l_m_bullets[i].updatePosition();
+        hero1.m_bullets[i].updatePosition();
+    }
 
 }
 
@@ -57,7 +73,29 @@ void play1::paintEvent(QPaintEvent *)
     painter.drawPixmap(0,m_map.map2_posy,m_map.map2);
     //paint hero
     painter.drawPixmap(hero1.m_x,hero1.m_y,hero1.myPlane);
-
+    //painter.drawPixmap(testbullet.m_x,testbullet.m_y,testbullet.m_Bullet);
+    //绘制子弹
+    for(int i = 0; i<BULLETS_NUM; i++ ){
+    //一个个判断是否为闲置
+        if(hero1.r_m_bullets[i].m_Free == false){
+            //绘制
+            painter.drawPixmap(hero1.r_m_bullets[i].m_x,hero1.r_m_bullets[i].m_y,hero1.r_m_bullets[i].m_Bullet);
+        }
+    }
+    for(int i = 0; i<BULLETS_NUM; i++ ){
+    //一个个判断是否为闲置
+        if(hero1.l_m_bullets[i].m_Free == false){
+            //绘制
+            painter.drawPixmap(hero1.l_m_bullets[i].m_x,hero1.l_m_bullets[i].m_y,hero1.l_m_bullets[i].m_Bullet);
+        }
+    }
+    for(int i = 0; i<BULLETS_NUM; i++ ){
+        //一个个判断是否为闲置
+            if(hero1.m_bullets[i].m_Free == false){
+                //绘制
+                painter.drawPixmap(hero1.m_bullets[i].m_x,hero1.m_bullets[i].m_y,hero1.m_bullets[i].m_Bullet);
+            }
+        }
 }
 
 void play1::mouseMoveEvent(QMouseEvent *event)

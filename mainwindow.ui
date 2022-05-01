@@ -99,8 +99,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
+     <x>260</x>
+     <y>416</y>
     </hint>
     <hint type="destinationlabel">
      <x>255</x>

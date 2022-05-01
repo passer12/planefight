@@ -29,7 +29,9 @@ SOURCES += \
     help.cpp \
     map.cpp \
     play1.cpp \
-    hero.cpp
+    hero.cpp \
+    bullet.cpp \
+    midbullet.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,7 +39,9 @@ HEADERS += \
     help.h \
     map.h \
     play1.h \
-    hero.h
+    hero.h \
+    bullet.h \
+    midbullet.h
 
 FORMS += \
         mainwindow.ui \

@@ -14,8 +14,43 @@ hero::hero()
 }
 
 void hero::shoot()
-{
-
+{   //发射间隔增加
+    m_recorder++;
+    //判断是否可发射
+    if(m_recorder<BULLET_INTERVAL){
+        return;
+    }
+    m_recorder = 0;
+    //发射
+    for(int i = 0; i<BULLETS_NUM; i++ ){
+    //一个个判断是否为闲置
+        if(r_m_bullets[i].m_Free){
+            //调整坐标并使其非空闲
+            r_m_bullets[i].m_x = m_x + myPlane.width()-r_m_bullets[i].m_Bullet.width();
+            r_m_bullets[i].m_y = m_y;
+            r_m_bullets[i].m_Free = false;
+            break;
+        }
+    }for(int i = 0; i<BULLETS_NUM; i++ ){
+        //一个个判断是否为闲置
+            if(l_m_bullets[i].m_Free){
+                //调整坐标并使其非空闲
+                l_m_bullets[i].m_x = m_x;
+                l_m_bullets[i].m_y = m_y;
+                l_m_bullets[i].m_Free = false;
+                break;
+            }
+        }
+    for(int i = 0; i<BULLETS_NUM; i++ ){
+            //一个个判断是否为闲置
+                if(m_bullets[i].m_Free){
+                    //调整坐标并使其非空闲
+                    m_bullets[i].m_x = m_x + myPlane.width()*0.5 - m_bullets[i].m_Bullet.width()*0.5;
+                    m_bullets[i].m_y = m_y;
+                    m_bullets[i].m_Free = false;
+                    break;
+                }
+            }
 }
 
 void hero::setPosition(int x, int y)

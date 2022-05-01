@@ -34,6 +34,7 @@ public:
     //创建地图
     map m_map;
 
+
 private:
     Ui::MainWindow *ui;
 };
