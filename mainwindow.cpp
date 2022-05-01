@@ -5,6 +5,7 @@
 #include<QSound>
 #include<QTimer>
 #include<QPainter>
+#include<play1.h>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -23,6 +24,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionmusic,&QAction::triggered,music,&help::show);
     //启动游戏
     PlayGame();
+    //第一个场景
+    play1 *fight1 = new play1;
+
+    connect(ui->pushButton,&QPushButton::clicked,[=](){
+       fight1->show();
+       this->hide();
+    });
 
 }
 
@@ -66,4 +74,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     //绘制地图
     painter.drawPixmap(0,m_map.map1_posy,m_map.map1);
     painter.drawPixmap(0,m_map.map2_posy,m_map.map2);
+
+
+
 }

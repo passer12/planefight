@@ -27,14 +27,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     help.cpp \
-    map.cpp
+    map.cpp \
+    play1.cpp \
+    hero.cpp
 
 HEADERS += \
         mainwindow.h \
     config.h \
     help.h \
-    map.h
+    map.h \
+    play1.h \
+    hero.h
 
 FORMS += \
         mainwindow.ui \
-    help.ui
+    help.ui \
+    play1.ui
+
+
