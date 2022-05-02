@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include<config.h>
 #include<help.h>
-#include<QSound>
 #include<QTimer>
 #include<QPainter>
 #include<play1.h>
@@ -32,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
        this->hide();
        fight1->PlayGame();
     });
+
 
 }
 

@@ -32,7 +32,9 @@ SOURCES += \
     hero.cpp \
     bullet.cpp \
     midbullet.cpp \
-    enemyplane.cpp
+    enemyplane.cpp \
+    bomb.cpp \
+    bosslevel.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +45,9 @@ HEADERS += \
     hero.h \
     bullet.h \
     midbullet.h \
-    enemyplane.h
+    enemyplane.h \
+    bomb.h \
+    bosslevel.h
 
 FORMS += \
         mainwindow.ui \

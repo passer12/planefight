@@ -34,6 +34,12 @@ void play1::initScense(){
 
     //时间记录初始化
     m_recorder = 0;
+
+    //调整爆炸音量 未知如何
+
+    //杀敌数置零
+    kill_num = 0;
+
 }
 void play1::PlayGame()
 {
@@ -49,12 +55,13 @@ void play1::PlayGame()
 
        //启动测试子弹
        // testbullet.m_Free = false;
-
-
-
         //检测碰撞
         collisiondetection();
 
+        //杀敌数目判断
+        if(kill_num > 20){
+
+        }
     });
 }
 
@@ -75,6 +82,12 @@ void play1::UpdatePostion()
     //更新敌机坐标
     for(int i = 0 ;i<ENEMY_NUM; i++){
         m_enemys[i].UpdatePosition();
+    }
+    //计算爆炸图片
+    for(int i = 0; i <BOMB_NUM ; i++){
+        if(m_bombs[i].m_free == false){
+            m_bombs[i].updateInfo();
+        }
     }
 
 }
@@ -115,6 +128,12 @@ void play1::paintEvent(QPaintEvent *)
         //闲置否
         if(m_enemys[i].m_free == false){
             painter.drawPixmap(m_enemys[i].m_x,m_enemys[i].m_y,m_enemys[i].m_enemy);
+        }
+    }
+    //绘制爆炸
+    for(int i = 0; i <BOMB_NUM ; i++){
+        if(m_bombs[i].m_free == false){
+            painter.drawPixmap(m_bombs[i].m_x, m_bombs[i].m_y, m_bombs[i].m_pixarr[m_bombs[i].m_index]);
         }
     }
 }
@@ -171,14 +190,44 @@ void play1::collisiondetection()
             if(m_enemys[i].m_rect.intersects(hero1.m_bullets[j].m_Rect)){
                 m_enemys[i].m_free = true;
                 hero1.m_bullets[j].m_Free = true;
+                //激活爆炸
+                for(int k = 0 ; k<BOMB_NUM ; k++){
+                    if(m_bombs[k].m_free){
+                        bombsound->play();
+                        m_bombs[k].m_free = false;
+                        m_bombs[k].m_x = m_enemys[i].m_x;
+                        m_bombs[k].m_y = m_enemys[i].m_y;
+                        break;
+                    }
+                }
                 break;
             }if(m_enemys[i].m_rect.intersects(hero1.l_m_bullets[j].m_Rect)){
                 m_enemys[i].m_free = true;
                 hero1.l_m_bullets[j].m_Free = true;
+                for(int k = 0 ; k<BOMB_NUM ; k++){
+                    if(m_bombs[k].m_free){
+                        bombsound->play();
+                        m_bombs[k].m_free = false;
+                        m_bombs[k].m_x = m_enemys[i].m_x;
+                        m_bombs[k].m_y = m_enemys[i].m_y;
+                        break;
+                    }
+                }
+                break;
                 break;
             }if(m_enemys[i].m_rect.intersects(hero1.r_m_bullets[j].m_Rect)){
                 m_enemys[i].m_free = true;
                 hero1.r_m_bullets[j].m_Free = true;
+                for(int k = 0 ; k<BOMB_NUM ; k++){
+                    if(m_bombs[k].m_free){
+                        bombsound->play();
+                        m_bombs[k].m_free = false;
+                        m_bombs[k].m_x = m_enemys[i].m_x;
+                        m_bombs[k].m_y = m_enemys[i].m_y;
+                        break;
+                    }
+                }
+                break;
                 break;
             }
         }

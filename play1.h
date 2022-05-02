@@ -8,6 +8,8 @@
 #include<hero.h>
 #include<bullet.h>
 #include<enemyplane.h>
+#include<bomb.h>
+#include<QSound>
 namespace Ui {
 class play1;
 }
@@ -54,6 +56,19 @@ public:
 
     //碰撞检测
     void collisiondetection();
+
+    //添加爆炸数组
+    bomb m_bombs[BOMB_NUM];
+
+    //爆炸音效
+    QSound * bombsound = new QSound(BOMB_SOUND,this);
+
+    //计录战胜数目
+    int kill_num;
+
+    //boss界面设置
+
+
 
 
 private:
