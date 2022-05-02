@@ -7,6 +7,7 @@
 #include<QPainter>
 #include<QMouseEvent>
 #include<bullet.h>
+#include<ctime>
 play1::play1(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::play1)
@@ -14,6 +15,8 @@ play1::play1(QWidget *parent) :
     ui->setupUi(this);
     initScense();
     //启动游戏,在主界面按按钮时实现了
+    //随机数种子
+    srand((unsigned int)time(NULL));
 
 }
 
@@ -28,6 +31,9 @@ void play1::initScense(){
 
     //定时器设置
     m_timer.setInterval(GAME_RATE);
+
+    //时间记录初始化
+    m_recorder = 0;
 }
 void play1::PlayGame()
 {
@@ -36,7 +42,8 @@ void play1::PlayGame()
     connect(&m_timer,&QTimer::timeout,[=](){
        //更新坐标
         UpdatePostion();
-
+        //敌机出场
+         enemycome();
        //绘制图片
         update();
 
@@ -44,6 +51,9 @@ void play1::PlayGame()
        // testbullet.m_Free = false;
 
 
+
+        //检测碰撞
+        collisiondetection();
 
     });
 }
@@ -61,6 +71,10 @@ void play1::UpdatePostion()
         hero1.r_m_bullets[i].updatePosition();
         hero1.l_m_bullets[i].updatePosition();
         hero1.m_bullets[i].updatePosition();
+    }
+    //更新敌机坐标
+    for(int i = 0 ;i<ENEMY_NUM; i++){
+        m_enemys[i].UpdatePosition();
     }
 
 }
@@ -96,6 +110,13 @@ void play1::paintEvent(QPaintEvent *)
                 painter.drawPixmap(hero1.m_bullets[i].m_x,hero1.m_bullets[i].m_y,hero1.m_bullets[i].m_Bullet);
             }
         }
+    //绘制敌机
+    for(int i = 0 ; i<ENEMY_NUM ; i++){
+        //闲置否
+        if(m_enemys[i].m_free == false){
+            painter.drawPixmap(m_enemys[i].m_x,m_enemys[i].m_y,m_enemys[i].m_enemy);
+        }
+    }
 }
 
 void play1::mouseMoveEvent(QMouseEvent *event)
@@ -116,4 +137,50 @@ void play1::mouseMoveEvent(QMouseEvent *event)
     hero1.setPosition(x,y);
 
 
+}
+
+void play1::enemycome()
+{   m_recorder++;
+    //判读是否可登场
+    if(m_recorder < ENEMY_INTERVAL){
+        return;
+    }
+    m_recorder = 0;
+    for(int i = 0; i < ENEMY_NUM;i++){
+        if(m_enemys[i].m_free){
+            m_enemys[i].m_free = false;
+            m_enemys[i].m_x = rand()%(GAME_WIDTH-m_enemys[i].m_enemy.width());
+            m_enemys[i].m_y = -m_enemys[i].m_enemy.height();
+            m_enemys[i].m_rect.moveTo(m_enemys[i].m_x,m_enemys[i].m_y);
+            break;
+        }
+    }
+
+}
+//碰撞检测
+void play1::collisiondetection()
+{   //遍历敌机和子弹
+    for(int i = 0; i <ENEMY_NUM; i++){
+        if(m_enemys[i].m_free){
+            continue;
+        }
+        for(int j = 0; j<BULLETS_NUM; j++){
+            if(hero1.m_bullets[j].m_Free){
+                continue;
+            }//如果重叠
+            if(m_enemys[i].m_rect.intersects(hero1.m_bullets[j].m_Rect)){
+                m_enemys[i].m_free = true;
+                hero1.m_bullets[j].m_Free = true;
+                break;
+            }if(m_enemys[i].m_rect.intersects(hero1.l_m_bullets[j].m_Rect)){
+                m_enemys[i].m_free = true;
+                hero1.l_m_bullets[j].m_Free = true;
+                break;
+            }if(m_enemys[i].m_rect.intersects(hero1.r_m_bullets[j].m_Rect)){
+                m_enemys[i].m_free = true;
+                hero1.r_m_bullets[j].m_Free = true;
+                break;
+            }
+        }
+    }
 }

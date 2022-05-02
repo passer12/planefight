@@ -1,11 +1,13 @@
 #ifndef PLAY1_H
 #define PLAY1_H
+#include<config.h>
 #include <QWidget>
 #include<help.h>
 #include<QTimer>
 #include<map.h>
 #include<hero.h>
 #include<bullet.h>
+#include<enemyplane.h>
 namespace Ui {
 class play1;
 }
@@ -40,6 +42,19 @@ public:
 
     //测试子弹
     //bullet testbullet;
+
+    //一堆敌机
+    enemyplane m_enemys[ENEMY_NUM];
+
+    //设置时间记录
+    int m_recorder;
+
+    //敌机登场
+    void enemycome();
+
+    //碰撞检测
+    void collisiondetection();
+
 
 private:
     Ui::play1 *ui;

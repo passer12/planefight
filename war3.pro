@@ -31,7 +31,8 @@ SOURCES += \
     play1.cpp \
     hero.cpp \
     bullet.cpp \
-    midbullet.cpp
+    midbullet.cpp \
+    enemyplane.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     play1.h \
     hero.h \
     bullet.h \
-    midbullet.h
+    midbullet.h \
+    enemyplane.h
 
 FORMS += \
         mainwindow.ui \

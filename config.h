@@ -14,10 +14,16 @@
 #define MAP_SCROLL_SPEED 2
 
 //子弹配置
-#define BULLET_SPEED 5 //子弹移动速度
+#define BULLET_SPEED 4//子弹移动速度
 #define BULLET_PATH  ":/res/bullet_12.png" //子弹图片路径
 #define BULLETS_NUM 15 //弹匣中子弹个数
 #define BULLET_INTERVAL 15 //子弹发射间隔
 #define BULLET_MIDDLE_PATH ":/res/bullet_11.png" //设置中间的特殊子弹
+
+//敌机设置
+#define ENEMY_PATH ":/res/img-plane_4.png" //敌机资源路径
+#define ENEMY_SPEED 4 //敌机速度
+#define ENEMY_NUM 20  //敌机数量
+#define ENEMY_INTERVAL 50 //敌机出场间隔
 
 #endif // CONFIG_H
