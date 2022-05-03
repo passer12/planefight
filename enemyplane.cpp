@@ -15,6 +15,8 @@ enemyplane::enemyplane()
     m_rect.setWidth(m_enemy.width());
     m_rect.setHeight(m_enemy.height());
     m_rect.moveTo(m_x,m_y);
+
+    life = 30;
 }
 
 void enemyplane::UpdatePosition()

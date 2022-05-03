@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {   
     ui->setupUi(this);
     initScense();
+    startbg->play();
     //通过ui界面实现退出按钮
     //创建了帮助界面
     //将菜单中的帮助和帮助文档联系起来。
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     PlayGame();
     //第一个场景
     play1 *fight1 = new play1;
+
 
     connect(ui->pushButton,&QPushButton::clicked,[=](){
        fight1->show();
@@ -46,12 +48,17 @@ void MainWindow::initScense(){
 
     //定时器设置
     m_timer.setInterval(GAME_RATE);
+
+    //背景设置
+    m_map.map1.load(START_MAP);
+    m_map.map2.load(START_MAP);
 }
 
 void MainWindow::PlayGame()
 {
     //开始游戏，调用定时器
     m_timer.start();
+
     connect(&m_timer,&QTimer::timeout,[=](){
        //更新坐标
         UpdatePostion();

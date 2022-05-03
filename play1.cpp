@@ -45,24 +45,39 @@ void play1::PlayGame()
 {
     //开始游戏，调用定时器
     m_timer.start();
+    //背景音乐
+    bg->play();
+
     connect(&m_timer,&QTimer::timeout,[=](){
        //更新坐标
         UpdatePostion();
         //敌机出场
-         enemycome();
+         enemycome(flag);
        //绘制图片
         update();
-
        //启动测试子弹
        // testbullet.m_Free = false;
         //检测碰撞
-        collisiondetection();
-
+        l_collisiondetection();
+        m_collisiondetection();
+        r_collisiondetection();
         //杀敌数目判断
-        if(kill_num > 20){
-
+        if(kill_num == KILL_NUM){
+            flag = true;
+            m_map.map1.load(BOSS_MAP_PATH);
+            m_map.map2.load(BOSS_MAP_PATH);
+            hero1.myPlane.load(NEWPLANE);
+            hero1.myPlane = hero1.myPlane.scaled(220,140);
+            for(int i = 0;i<BULLETS_NUM;i++){
+            hero1.m_bullets[i].m_Bullet.load(NEWBULLET);
+            hero1.m_bullets[i].m_Bullet = hero1.m_bullets[i].m_Bullet.scaled(50,100);
+            }
         }
+        //boss
+        bosscoming();
+
     });
+
 }
 
 void play1::UpdatePostion()
@@ -88,6 +103,10 @@ void play1::UpdatePostion()
         if(m_bombs[i].m_free == false){
             m_bombs[i].updateInfo();
         }
+    }
+    //加入boss
+    if(m_boss.m_free == false){
+        m_boss.UpdatePosition();
     }
 
 }
@@ -136,6 +155,10 @@ void play1::paintEvent(QPaintEvent *)
             painter.drawPixmap(m_bombs[i].m_x, m_bombs[i].m_y, m_bombs[i].m_pixarr[m_bombs[i].m_index]);
         }
     }
+    //绘制boss
+    if(m_boss.m_free==false){
+    painter.drawPixmap(m_boss.m_x,m_boss.m_y,m_boss.m_bossp);
+    }
 }
 
 void play1::mouseMoveEvent(QMouseEvent *event)
@@ -158,8 +181,11 @@ void play1::mouseMoveEvent(QMouseEvent *event)
 
 }
 
-void play1::enemycome()
-{   m_recorder++;
+void play1::enemycome(bool f)
+{   if(f){
+       return;
+    }
+    m_recorder++;
     //判读是否可登场
     if(m_recorder < ENEMY_INTERVAL){
         return;
@@ -177,7 +203,7 @@ void play1::enemycome()
 
 }
 //碰撞检测
-void play1::collisiondetection()
+void play1::l_collisiondetection()
 {   //遍历敌机和子弹
     for(int i = 0; i <ENEMY_NUM; i++){
         if(m_enemys[i].m_free){
@@ -187,9 +213,53 @@ void play1::collisiondetection()
             if(hero1.m_bullets[j].m_Free){
                 continue;
             }//如果重叠
-            if(m_enemys[i].m_rect.intersects(hero1.m_bullets[j].m_Rect)){
+            if(m_enemys[i].m_rect.intersects(hero1.l_m_bullets[j].m_Rect)){
+                hero1.l_m_bullets[j].m_Free = true;
+                m_enemys[i].life--;
+                if(m_enemys[i].life > 0){
+                    continue;
+                }
                 m_enemys[i].m_free = true;
+                m_enemys[i].life =30;
+                //杀敌数加一
+                kill_num++;
+                for(int k = 0 ; k<BOMB_NUM ; k++){
+                    if(m_bombs[k].m_free){
+                        bombsound->play();
+                        m_bombs[k].m_free = false;
+                        m_bombs[k].m_x = m_enemys[i].m_x;
+                        m_bombs[k].m_y = m_enemys[i].m_y;
+                        break;
+                    }
+                }
+                break;
+
+            }
+        }
+    }
+}
+
+void play1::m_collisiondetection()
+{//遍历敌机和子弹
+    for(int i = 0; i <ENEMY_NUM; i++){
+        if(m_enemys[i].m_free){
+            continue;
+        }
+        for(int j = 0; j<BULLETS_NUM; j++){
+            if(hero1.m_bullets[j].m_Free){
+                continue;
+            }//如果重叠
+            if(m_enemys[i].m_rect.intersects(hero1.m_bullets[j].m_Rect)){
+
                 hero1.m_bullets[j].m_Free = true;
+                m_enemys[i].life--;
+                if(m_enemys[i].life > 0){
+                   continue;
+                }
+                m_enemys[i].m_free = true;
+                m_enemys[i].life = 30;
+                //杀敌数加一
+                kill_num++;
                 //激活爆炸
                 for(int k = 0 ; k<BOMB_NUM ; k++){
                     if(m_bombs[k].m_free){
@@ -201,35 +271,56 @@ void play1::collisiondetection()
                     }
                 }
                 break;
-            }if(m_enemys[i].m_rect.intersects(hero1.l_m_bullets[j].m_Rect)){
-                m_enemys[i].m_free = true;
-                hero1.l_m_bullets[j].m_Free = true;
-                for(int k = 0 ; k<BOMB_NUM ; k++){
-                    if(m_bombs[k].m_free){
-                        bombsound->play();
-                        m_bombs[k].m_free = false;
-                        m_bombs[k].m_x = m_enemys[i].m_x;
-                        m_bombs[k].m_y = m_enemys[i].m_y;
-                        break;
-                    }
-                }
-                break;
-                break;
-            }if(m_enemys[i].m_rect.intersects(hero1.r_m_bullets[j].m_Rect)){
-                m_enemys[i].m_free = true;
-                hero1.r_m_bullets[j].m_Free = true;
-                for(int k = 0 ; k<BOMB_NUM ; k++){
-                    if(m_bombs[k].m_free){
-                        bombsound->play();
-                        m_bombs[k].m_free = false;
-                        m_bombs[k].m_x = m_enemys[i].m_x;
-                        m_bombs[k].m_y = m_enemys[i].m_y;
-                        break;
-                    }
-                }
-                break;
-                break;
             }
         }
     }
+
+}
+
+void play1::r_collisiondetection()
+{//遍历敌机和子弹
+    for(int i = 0; i <ENEMY_NUM; i++){
+        if(m_enemys[i].m_free){
+            continue;
+        }
+        for(int j = 0; j<BULLETS_NUM; j++){
+            if(hero1.m_bullets[j].m_Free){
+                continue;
+            }//如果重叠
+            if(m_enemys[i].m_rect.intersects(hero1.r_m_bullets[j].m_Rect)){
+
+                hero1.r_m_bullets[j].m_Free = true;
+                m_enemys[i].life--;
+                if(m_enemys[i].life > 0){
+                     continue;
+                }m_enemys[i].m_free = true;
+                m_enemys[i].life = 30;
+                //杀敌数加一
+                kill_num++;
+                for(int k = 0 ; k<BOMB_NUM ; k++){
+                    if(m_bombs[k].m_free){
+                        bombsound->play();
+                        m_bombs[k].m_free = false;
+                        m_bombs[k].m_x = m_enemys[i].m_x;
+                        m_bombs[k].m_y = m_enemys[i].m_y;
+                        break;
+                    }
+                }
+                break;
+
+            }
+        }
+    }
+
+}
+
+void play1::bosscoming()
+{    //判断杀敌数
+    if(flag == false){
+        return;
+    }m_recorder++;
+    if(m_recorder < BOSS_COME_TIME){
+        return;
+    }m_boss.m_free = false;
+
 }

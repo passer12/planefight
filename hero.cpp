@@ -4,6 +4,7 @@ hero::hero()
 {
     //初始化加载飞机图片
     myPlane.load(HERO_PATH);
+    //myPlane = myPlane.scaled(QSize(50,50),Qt::KeepAspectRatio);
     //初始化飞机位置
     m_x = (GAME_WIDTH - myPlane.width())*0.5;
     m_y = GAME_HEIGHT - myPlane.height();

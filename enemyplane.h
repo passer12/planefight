@@ -25,6 +25,9 @@ public:
 
     //边框
     QRect m_rect;
+
+    //设置生命
+    int life ;
 };
 
 #endif // ENEMYPLANE_H

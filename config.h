@@ -12,6 +12,7 @@
 //地图配置
 #define MAP_PATH ":/res/img_bg_level_1.jpg" //地图路径
 #define MAP_SCROLL_SPEED 2
+#define START_MAP ":/res/img_bg_level_2.jpg" //新背景
 
 //子弹配置
 #define BULLET_SPEED 4//子弹移动速度
@@ -34,6 +35,16 @@
 
 //音效配置数据
 #define BOMB_SOUND ":/res/bomb.wav" //爆炸音效
+#define BGM ":/res/bg.wav" //bgm
+#define START ":/res/killer.wav" //开始的音乐
 
+//boss关卡配置数据
+#define KILL_NUM  10 //预估杀敌数目
+#define BOSS_MAP_PATH ":/res/img_bg_level_5.jpg" // 地图路径
+#define BOSS_PATH ":/res/boss.png" //boss路径
+#define BOSS_COME_TIME 50 //BOSS登场时间
+#define BOSS_SPEED 10 //boss速度
+#define NEWPLANE ":/res/new hero.png"
+#define NEWBULLET ":/res/dragonbullet.png"
 
 #endif // CONFIG_H

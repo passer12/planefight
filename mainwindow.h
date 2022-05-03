@@ -4,6 +4,8 @@
 #include<help.h>
 #include<QTimer>
 #include<map.h>
+#include<QSound>
+#include<config.h>
 namespace Ui {
 class MainWindow;
 }
@@ -34,6 +36,7 @@ public:
     //创建地图
     map m_map;
 
+    QSound * startbg = new QSound(START,this);
 
 private:
     Ui::MainWindow *ui;

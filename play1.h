@@ -10,6 +10,7 @@
 #include<enemyplane.h>
 #include<bomb.h>
 #include<QSound>
+#include<boss.h>
 namespace Ui {
 class play1;
 }
@@ -52,22 +53,31 @@ public:
     int m_recorder;
 
     //敌机登场
-    void enemycome();
+    void enemycome(bool);
 
     //碰撞检测
-    void collisiondetection();
+    void l_collisiondetection();
+    void m_collisiondetection();
+    void r_collisiondetection();
 
     //添加爆炸数组
     bomb m_bombs[BOMB_NUM];
 
     //爆炸音效
     QSound * bombsound = new QSound(BOMB_SOUND,this);
+    QSound * bg = new QSound(BGM,this);
+
 
     //计录战胜数目
     int kill_num;
+    int flag = false;
 
-    //boss界面设置
+    //boss设置
+    //上场时间
+    void bosscoming();
 
+    //boss
+    Boss m_boss;
 
 
 

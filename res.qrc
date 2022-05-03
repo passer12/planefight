@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>res/app.ico</file>
+        <file>res/bg.wav</file>
+        <file>res/bg1.jpg</file>
+        <file>res/bg2.jpg</file>
+        <file>res/bg3.jpg</file>
         <file>res/bomb.wav</file>
         <file>res/bomb-1.png</file>
         <file>res/bomb-2.png</file>
@@ -9,6 +13,8 @@
         <file>res/bomb-5.png</file>
         <file>res/bomb-6.png</file>
         <file>res/bomb-7.png</file>
+        <file>res/boss.png</file>
+        <file>res/bullet.png</file>
         <file>res/bullet_1.png</file>
         <file>res/bullet_2.png</file>
         <file>res/bullet_3.png</file>
@@ -23,6 +29,10 @@
         <file>res/bullet_12.png</file>
         <file>res/bullet_13.png</file>
         <file>res/bullet_14.png</file>
+        <file>res/dragon.png</file>
+        <file>res/dragonbullet.png</file>
+        <file>res/dragonbullet2.png</file>
+        <file>res/File0114.wav</file>
         <file>res/game.ico</file>
         <file>res/hero.png</file>
         <file>res/hero_bullet_7.png</file>
@@ -39,5 +49,9 @@
         <file>res/img-plane_5.png</file>
         <file>res/img-plane_6.png</file>
         <file>res/img-plane_7.png</file>
+        <file>res/killer.wav</file>
+        <file>res/me1.png</file>
+        <file>res/new hero.png</file>
+        <file>res/warning.gif</file>
     </qresource>
 </RCC>

@@ -21,6 +21,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+CONFIG += resources_big
 
 
 SOURCES += \
@@ -34,7 +35,7 @@ SOURCES += \
     midbullet.cpp \
     enemyplane.cpp \
     bomb.cpp \
-    bosslevel.cpp
+    boss.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,11 +48,14 @@ HEADERS += \
     midbullet.h \
     enemyplane.h \
     bomb.h \
-    bosslevel.h
+    boss.h
 
 FORMS += \
         mainwindow.ui \
     help.ui \
     play1.ui
+
+RESOURCES += \
+    res.qrc
 
 
