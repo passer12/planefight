@@ -22,14 +22,14 @@
 #define BULLET_MIDDLE_PATH ":/res/bullet_11.png" //设置中间的特殊子弹
 
 //敌机设置
-#define ENEMY_PATH ":/res/img-plane_4.png" //敌机资源路径
+#define ENEMY_PATH ":/res/fly%1.png" //敌机资源路径
 #define ENEMY_SPEED 4 //敌机速度
-#define ENEMY_NUM 20  //敌机数量
+#define ENEMY_NUM 10  //敌机数量
 #define ENEMY_INTERVAL 50 //敌机出场间隔
 
 //爆炸设置
 #define BOMB_PATH ":/res/bomb-%1.png" //爆炸图片
-#define BOMB_NUM 20 //爆炸数量
+#define BOMB_NUM 7 //爆炸数量
 #define BOMB_MAX 7 //爆炸图片最大索引
 #define BOMB_INTERVAL 20 //爆炸切图时间间隔
 
@@ -39,10 +39,10 @@
 #define START ":/res/killer.wav" //开始的音乐
 
 //boss关卡配置数据
-#define KILL_NUM  10 //预估杀敌数目
+#define KILL_NUM  5 //预估杀敌数目
 #define BOSS_MAP_PATH ":/res/img_bg_level_5.jpg" // 地图路径
 #define BOSS_PATH ":/res/boss.png" //boss路径
-#define BOSS_COME_TIME 50 //BOSS登场时间
+#define BOSS_COME_TIME 200 //BOSS登场时间
 #define BOSS_SPEED 10 //boss速度
 #define NEWPLANE ":/res/new hero.png"
 #define NEWBULLET ":/res/dragonbullet.png"

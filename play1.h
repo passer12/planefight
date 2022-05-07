@@ -11,6 +11,7 @@
 #include<bomb.h>
 #include<QSound>
 #include<boss.h>
+#include<QMessageBox>
 namespace Ui {
 class play1;
 }
@@ -79,7 +80,15 @@ public:
     //boss
     Boss m_boss;
 
+    //对话框
+    //主角生命
+    void isdie();
 
+    //重开
+
+
+signals:
+    void die();
 
 private:
     Ui::play1 *ui;

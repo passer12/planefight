@@ -1,12 +1,18 @@
 #include "enemyplane.h"
 #include<config.h>
+#include<ctime>
 enemyplane::enemyplane()
 {
     //速度
     m_speed = ENEMY_SPEED;
-
+    //srand((unsigned int)time(NULL));
     //图片资源
-    m_enemy.load(ENEMY_PATH);
+    int i =rand()%2+1;
+    //QString str = QString(ENEMY_PATH).arg(i);
+
+    m_enemy.load(QString(ENEMY_PATH).arg(i));
+
+    m_enemy = m_enemy.scaled(100,150);
     //位置初始化
     m_x = 0;
     m_y = -m_enemy.width();

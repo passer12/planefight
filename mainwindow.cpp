@@ -26,13 +26,15 @@ MainWindow::MainWindow(QWidget *parent) :
     PlayGame();
     //第一个场景
     play1 *fight1 = new play1;
-
-
     connect(ui->pushButton,&QPushButton::clicked,[=](){
        fight1->show();
        this->hide();
        fight1->PlayGame();
     });
+//    connect(fight1,&play1::die,[=]{
+//        this->show();
+//        play1 *fight1 = new play1;
+//    });
 
 
 }

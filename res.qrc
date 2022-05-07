@@ -53,5 +53,9 @@
         <file>res/me1.png</file>
         <file>res/new hero.png</file>
         <file>res/warning.gif</file>
+        <file>res/flame.png</file>
+        <file>res/fly1.png</file>
+        <file>res/fly2.png</file>
+        <file>res/plane.png</file>
     </qresource>
 </RCC>

@@ -8,6 +8,7 @@
 #include<QMouseEvent>
 #include<bullet.h>
 #include<ctime>
+#include<QMessageBox>
 play1::play1(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::play1)
@@ -17,6 +18,8 @@ play1::play1(QWidget *parent) :
     //启动游戏,在主界面按按钮时实现了
     //随机数种子
     srand((unsigned int)time(NULL));
+    QMessageBox message(QMessageBox::NoIcon,"检测到大波能量","垃圾换皮飞机也敢挑战龙王？");
+    message.setIconPixmap(QPixmap(BOSS_PATH));
 
 }
 
@@ -49,6 +52,8 @@ void play1::PlayGame()
     bg->play();
 
     connect(&m_timer,&QTimer::timeout,[=](){
+        //判断死活
+        isdie();
        //更新坐标
         UpdatePostion();
         //敌机出场
@@ -64,6 +69,14 @@ void play1::PlayGame()
         //杀敌数目判断
         if(kill_num == KILL_NUM){
             flag = true;
+            QMessageBox::warning(this,tr("检测到大波能量波动"),tr("人类？滚吧！！"));
+            QMessageBox message(QMessageBox::NoIcon,"飘渺之音","垃圾换皮飞机也敢挑战龙王？");
+            message.setIconPixmap(QPixmap(BOSS_PATH));
+            message.exec();
+            QMessageBox message1(QMessageBox::NoIcon,"反驳","我不做人了？");
+            message1.setIconPixmap(QPixmap(NEWPLANE));
+            message1.exec();
+
             m_map.map1.load(BOSS_MAP_PATH);
             m_map.map2.load(BOSS_MAP_PATH);
             hero1.myPlane.load(NEWPLANE);
@@ -71,7 +84,8 @@ void play1::PlayGame()
             for(int i = 0;i<BULLETS_NUM;i++){
             hero1.m_bullets[i].m_Bullet.load(NEWBULLET);
             hero1.m_bullets[i].m_Bullet = hero1.m_bullets[i].m_Bullet.scaled(50,100);
-            }
+            }kill_num++;
+
         }
         //boss
         bosscoming();
@@ -307,7 +321,6 @@ void play1::r_collisiondetection()
                     }
                 }
                 break;
-
             }
         }
     }
@@ -322,5 +335,19 @@ void play1::bosscoming()
     if(m_recorder < BOSS_COME_TIME){
         return;
     }m_boss.m_free = false;
+
+}
+
+void play1::isdie()
+{   //便利敌人
+    for(int i = 0;i<ENEMY_NUM;i++){
+    if(m_enemys[i].m_free==false){
+      if(m_enemys[i].m_rect.intersects(hero1.myRect)){
+              QMessageBox::about(NULL,"bye","我很抱歉，但是再见");
+              this->close();
+
+    }
+    }
+    }
 
 }
