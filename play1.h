@@ -67,7 +67,7 @@ public:
     //爆炸音效
     QSound * bombsound = new QSound(BOMB_SOUND,this);
     QSound * bg = new QSound(BGM,this);
-
+    QSound * fg = new QSound(FIGHT_MUSIC,this);
 
     //计录战胜数目
     int kill_num;
@@ -84,7 +84,24 @@ public:
     //主角生命
     void isdie();
 
-    //重开
+    //击中boss
+    void shootboss();
+
+    //boss血量
+    int bosslife;
+    //赢否
+    void iswin();
+
+    //判断被boss击中几次
+    int index;
+
+    //无敌帧
+    int best;
+    int best2;
+
+    //大招？
+    void istime();
+    int head;
 
 
 signals:

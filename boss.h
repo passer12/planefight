@@ -3,6 +3,7 @@
 #include<config.h>
 #include<QPixmap>
 #include<QRect>
+#include<bullet.h>
 
 class Boss
 {
@@ -30,6 +31,10 @@ public:
 
     //设置生命
     int life ;
+
+    //设置子弹
+    bullet bullet1;
+    bullet bullet2;
 };
 
 #endif // BOSS_H

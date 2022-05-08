@@ -25,6 +25,9 @@ public:
 
     //子弹的矩形边框
     QRect m_Rect;
+
+    //boss子弹移动
+    void bossbulletupdate();
 };
 
 #endif // BULLET_H

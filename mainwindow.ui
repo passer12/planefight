@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>512</width>
+    <width>1366</width>
     <height>768</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>512</width>
-    <height>768</height>
+    <width>1366</width>
+    <height>765</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>512</width>
+    <width>1366</width>
     <height>768</height>
    </size>
   </property>
@@ -26,21 +26,34 @@
    <string>war3</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="res.qrc">
     <normaloff>:/res/app.ico</normaloff>:/res/app.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>340</y>
-      <width>141</width>
-      <height>101</height>
+      <x>600</x>
+      <y>321</y>
+      <width>166</width>
+      <height>166</height>
      </rect>
     </property>
     <property name="text">
      <string>开始</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>110</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>鬼知道这缝合游戏该起什么名字</string>
     </property>
    </widget>
   </widget>
@@ -49,7 +62,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>512</width>
+     <width>1366</width>
      <height>26</height>
     </rect>
    </property>
@@ -90,7 +103,9 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionoutgame</sender>
@@ -99,8 +114,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>260</x>
-     <y>416</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>255</x>

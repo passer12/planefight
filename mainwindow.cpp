@@ -5,6 +5,7 @@
 #include<QTimer>
 #include<QPainter>
 #include<play1.h>
+#include<mybutton.h>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -22,19 +23,28 @@ MainWindow::MainWindow(QWidget *parent) :
     //音乐界面
     music->bemusic();
     connect(ui->actionmusic,&QAction::triggered,music,&help::show);
+    //按钮透明
+    ui->pushButton->setFlat(true);
     //启动游戏
     PlayGame();
     //第一个场景
     play1 *fight1 = new play1;
     connect(ui->pushButton,&QPushButton::clicked,[=](){
        fight1->show();
+
        this->hide();
+
        fight1->PlayGame();
+       startbg->stop();
     });
 //    connect(fight1,&play1::die,[=]{
 //        this->show();
 //        play1 *fight1 = new play1;
 //    });
+    //开始按钮
+//    myButton * startBtn = new myButton(":/res/MenuSceneStartButton.png");
+//    startBtn->setParent(this);
+//    startBtn->move(this->width()*0.5-startBtn->width()*0.5,this->height()*0.7);
 
 
 }
@@ -54,6 +64,7 @@ void MainWindow::initScense(){
     //背景设置
     m_map.map1.load(START_MAP);
     m_map.map2.load(START_MAP);
+    m_map.map1_posy = -m_map.map1.height();
 }
 
 void MainWindow::PlayGame()

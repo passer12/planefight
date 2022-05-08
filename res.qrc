@@ -2,9 +2,6 @@
     <qresource prefix="/">
         <file>res/app.ico</file>
         <file>res/bg.wav</file>
-        <file>res/bg1.jpg</file>
-        <file>res/bg2.jpg</file>
-        <file>res/bg3.jpg</file>
         <file>res/bomb.wav</file>
         <file>res/bomb-1.png</file>
         <file>res/bomb-2.png</file>
@@ -42,13 +39,6 @@
         <file>res/img_bg_level_3.jpg</file>
         <file>res/img_bg_level_4.jpg</file>
         <file>res/img_bg_level_5.jpg</file>
-        <file>res/img-plane_1.png</file>
-        <file>res/img-plane_2.png</file>
-        <file>res/img-plane_3.png</file>
-        <file>res/img-plane_4.png</file>
-        <file>res/img-plane_5.png</file>
-        <file>res/img-plane_6.png</file>
-        <file>res/img-plane_7.png</file>
         <file>res/killer.wav</file>
         <file>res/me1.png</file>
         <file>res/new hero.png</file>
@@ -57,5 +47,38 @@
         <file>res/fly1.png</file>
         <file>res/fly2.png</file>
         <file>res/plane.png</file>
+        <file>res/fightmusic.wav</file>
+        <file>res/paper2.jpg</file>
+        <file>res/paper.png</file>
+        <file>res/paper2.png</file>
+        <file>res/bg3.jpg</file>
+        <file>res/bg.jpg</file>
+        <file>res/img-plane_1.png</file>
+        <file>res/img-plane_2.png</file>
+        <file>res/img-plane_3.png</file>
+        <file>res/img-plane_4.png</file>
+        <file>res/img-plane_5.png</file>
+        <file>res/img-plane_6.png</file>
+        <file>res/img-plane_7.png</file>
+        <file>res/bg2.jpg</file>
+        <file>res/bg1.jpg</file>
+        <file>res/paper22.png</file>
+        <file>res/paper222.png</file>
+        <file>res/start.png</file>
+        <file>res/4.png</file>
+        <file>res/enemy1.png</file>
+        <file>res/enemy2.png</file>
+        <file>res/enemy3.png</file>
+        <file>res/enemy4.png</file>
+        <file>res/playmap.jpg</file>
+        <file>res/2.jpg</file>
+        <file>res/enemy5.png</file>
+        <file>res/enemy6.png</file>
+        <file>res/enemy7.png</file>
+        <file>res/me.png</file>
+        <file>res/mywife.png</file>
+        <file>res/yuban.png</file>
+        <file>res/voice.wav</file>
+        <file>res/start.wav</file>
     </qresource>
 </RCC>

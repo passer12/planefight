@@ -7,12 +7,12 @@ enemyplane::enemyplane()
     m_speed = ENEMY_SPEED;
     //srand((unsigned int)time(NULL));
     //图片资源
-    int i =rand()%2+1;
+    int i =rand()%7+1;
     //QString str = QString(ENEMY_PATH).arg(i);
 
     m_enemy.load(QString(ENEMY_PATH).arg(i));
 
-    m_enemy = m_enemy.scaled(100,150);
+    //m_enemy = m_enemy.scaled(m_enemy.width()*0.5,);
     //位置初始化
     m_x = 0;
     m_y = -m_enemy.width();

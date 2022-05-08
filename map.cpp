@@ -7,7 +7,7 @@ map::map()
     map2.load(MAP_PATH);
 
     //初始化y轴
-    map1_posy = -GAME_HEIGHT;
+    map1_posy = -map1.height();
     map2_posy = 0;
 
     //地图滚动速率
@@ -19,7 +19,7 @@ void map::mapPosition()
 {   map1_posy+=MAP_SCROLL_SPEED;
     map2_posy+=MAP_SCROLL_SPEED;
     if(map1_posy==0){
-        map1_posy = -GAME_HEIGHT;
+        map1_posy = -map1.height();
         map2_posy = 0;
     }
 

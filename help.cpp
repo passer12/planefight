@@ -2,11 +2,31 @@
 #include "ui_help.h"
 #include<QLabel>
 #include<qslider>
+#include<QPainter>
+#include<config.h>
 help::help(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::help)
 {
     ui->setupUi(this);
+    //ui中设置菜单栏，和固定大小
+    //定时器设置
+    m_timer.setInterval(GAME_RATE);
+
+    //背景设置
+    m_map.map1.load(START_MAP);
+    m_map.map2.load(START_MAP);
+    m_map.map1_posy = -m_map.map1.height();
+    //开始游戏，调用定时器
+    m_timer.start();
+
+    connect(&m_timer,&QTimer::timeout,[=](){
+       //更新坐标
+        UpdatePostion();
+
+       //绘制图片
+        update();
+    });
 }
 
 help::~help()
@@ -16,8 +36,8 @@ help::~help()
 //创建beabout函数，我的建议是：不如继承
 void help::beabout(){
     ui->label->setText(QString("aboutus"));
-    ui->label_2->setText(QString("求三连"));
-    ui->label_3->setText(QString("制作人帝王专属，哈哈"));
+    ui->label_2->setText(QString("没什么好介绍的"));
+    //ui->label_3->setText(QString(""));
 }
 //创建bemusic
 void help::bemusic(){
@@ -31,6 +51,21 @@ void help::bemusic(){
     sound->setValue(50);
     sound->setParent(this);
     sound->setGeometry(this->width()*0.5-150,this->height()*0.5,300,10);
+}
+
+void help::UpdatePostion()
+{//更新地图坐标
+    m_map.mapPosition();
+
+}
+
+void help::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    //绘制地图
+    painter.drawPixmap(0,m_map.map1_posy,m_map.map1);
+    painter.drawPixmap(0,m_map.map2_posy,m_map.map2);
+
 }
 
 

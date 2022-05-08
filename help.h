@@ -1,8 +1,8 @@
 #ifndef HELP_H
 #define HELP_H
-
 #include <QWidget>
-
+#include<map.h>
+#include<QTimer>
 namespace Ui {
 class help;
 }
@@ -16,6 +16,16 @@ public:
     ~help();
     void beabout();
     void bemusic();
+    map m_map;
+    //设置定时器
+    QTimer m_timer;
+    //更新元素坐标
+    void UpdatePostion();
+
+    //绘制到屏幕中
+    void paintEvent(QPaintEvent *);
+
+
 private:
     Ui::help *ui;
 };

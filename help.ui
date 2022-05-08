@@ -28,40 +28,40 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>50</y>
+     <x>50</x>
+     <y>70</y>
      <width>111</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>事实如此</string>
+    <string>鼠标控制方向</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>150</y>
-     <width>161</width>
-     <height>21</height>
+     <x>50</x>
+     <y>130</y>
+     <width>431</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>鼠标及键盘控制方向</string>
+    <string>三行子弹，中间子弹必中，左右两边的子弹有一定概率被闪避</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>220</y>
+     <x>50</x>
+     <y>200</y>
      <width>181</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>战胜无趣的敌人吧</string>
+    <string>敌方没有子弹</string>
    </property>
   </widget>
  </widget>
