@@ -53,4 +53,5 @@
 #define WIFE ":res/yuban.png"
 #define VOICE ":/res/voice.wav"
 #define STARTVOICE ":/res/start.wav"
+#define SHOW ":/res/show.wav"
 #endif // CONFIG_H

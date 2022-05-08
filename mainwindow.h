@@ -32,7 +32,7 @@ public:
 
     //绘制到屏幕中
     void paintEvent(QPaintEvent *);
-
+    int m = 0;
     //创建地图
     map m_map;
 

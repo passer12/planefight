@@ -65,6 +65,17 @@ void MainWindow::initScense(){
     m_map.map1.load(START_MAP);
     m_map.map2.load(START_MAP);
     m_map.map1_posy = -m_map.map1.height();
+
+    connect(music->nomusic,&QPushButton::clicked,[=](){
+        if(m==0){
+            startbg->stop();
+            m = 1;
+        }else if(m==1){
+            startbg->play();
+            m = 0;
+        }
+    });
+
 }
 
 void MainWindow::PlayGame()

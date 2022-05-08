@@ -4,6 +4,8 @@
 #include<qslider>
 #include<QPainter>
 #include<config.h>
+#include<QPushButton>
+
 help::help(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::help)
@@ -37,7 +39,7 @@ help::~help()
 void help::beabout(){
     ui->label->setText(QString("aboutus"));
     ui->label_2->setText(QString("没什么好介绍的"));
-    //ui->label_3->setText(QString(""));
+    ui->label_3->setText(QString(""));
 }
 //创建bemusic
 void help::bemusic(){
@@ -45,12 +47,18 @@ void help::bemusic(){
     ui->label_2->hide();
     ui->label_3->hide();
     //设置水平滑动条
-    QSlider* sound = new QSlider(Qt::Horizontal);
-    sound->setMinimum(0);
-    sound->setMaximum(100);
-    sound->setValue(50);
-    sound->setParent(this);
-    sound->setGeometry(this->width()*0.5-150,this->height()*0.5,300,10);
+//    QSlider* sound = new QSlider(Qt::Horizontal);
+//    sound->setMinimum(0);
+//    sound->setMaximum(100);
+//    sound->setValue(50);
+//    sound->setParent(this);
+//    sound->setGeometry(this->width()*0.5-150,this->height()*0.5,300,10);
+    //关闭声音
+    nomusic->setParent(this);
+    nomusic->setText("声音开关");
+    nomusic->setGeometry(QRect(this->width()*0.5-50,this->width()*0.5-50,100,100));
+    nomusic->setFlat(true);
+
 }
 
 void help::UpdatePostion()

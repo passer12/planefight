@@ -88,6 +88,7 @@ void play1::PlayGame()
             QMessageBox message(QMessageBox::NoIcon,"飘渺之音","垃圾换皮飞机也敢挑战龙王？");
             message.setIconPixmap(QPixmap(BOSS_PATH));
             message.exec();
+            QSound::play(SHOW);
             QMessageBox message1(QMessageBox::NoIcon,"反驳","我不做人了！");
             message1.setIconPixmap(QPixmap(NEWPLANE));
             message1.exec();
@@ -398,18 +399,21 @@ void play1::isdie()
             best = 100;
             index++;
             }else if(index == 1){
+                QSound::play(VOICE);
                 QMessageBox message2(QMessageBox::NoIcon,"劝告之音","机会就这么多，你得抓住啊");
                 message2.setIconPixmap(QPixmap(BOSS_PATH));
                 message2.exec();
                 index++;
                 best = 100;
             }else if(index == 2){
+                QSound::play(VOICE);
                 QMessageBox message3(QMessageBox::NoIcon,"宽容之音","成，再给你最后一次机会");
                 message3.setIconPixmap(QPixmap(BOSS_PATH));
                 message3.exec();
                 index++;
                 best = 100;
             }else if(index == 3){
+                QSound::play(VOICE);
                 QMessageBox message4(QMessageBox::NoIcon,"无奈之音","你没机会了");
                 message4.setIconPixmap(QPixmap(BOSS_PATH));
                 message4.exec();

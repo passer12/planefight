@@ -80,5 +80,6 @@
         <file>res/yuban.png</file>
         <file>res/voice.wav</file>
         <file>res/start.wav</file>
+        <file>res/show.wav</file>
     </qresource>
 </RCC>

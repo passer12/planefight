@@ -3,6 +3,7 @@
 #include <QWidget>
 #include<map.h>
 #include<QTimer>
+#include<QPushButton>
 namespace Ui {
 class help;
 }
@@ -24,8 +25,8 @@ public:
 
     //绘制到屏幕中
     void paintEvent(QPaintEvent *);
-
-
+    //声音暂停
+    QPushButton* nomusic = new QPushButton;
 private:
     Ui::help *ui;
 };
